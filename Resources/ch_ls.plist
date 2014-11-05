@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>email</key>
+	<string>邮箱</string>
+	<key>art</key>
+	<string>美术</string>
+	<key>program</key>
+	<string>程序</string>
+	<key>gamedesign</key>
+	<string>游戏设计</string>
+	<key>appname</key>
+	<string>LDZ</string>
+</dict>
+</plist>

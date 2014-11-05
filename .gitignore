@@ -1,0 +1,14 @@
+proj.ios_mac/LHCocosFirstGame.xcodeproj/project.xcworkspace
+proj.ios_mac/LHCocosFirstGame.xcodeproj/xcuserdata
+proj.ios_mac/build
+proj.android/gen
+proj.android/bin
+proj.android/assets
+proj.android/obj
+publish
+cocos2d
+proj.android/libs/armeabi/libcocos2dcpp.so
+
+proj.android/libs/armeabi/gdb.setup
+
+*.DS_Store
