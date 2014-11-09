@@ -11,7 +11,7 @@
 #include "LHMacros.h"
 USING_NS_CC;
 
-PHSprite* PHSprite::createWithName(const std::string name,cocos2d::Size size){
+PHSprite* PHSprite::createWithName(const std::string& name,cocos2d::Size size){
     PHSprite* sp = PHSprite::create("phsprite.png");
     Size cs = sp->getContentSize();
     float xs = size.width/cs.width;

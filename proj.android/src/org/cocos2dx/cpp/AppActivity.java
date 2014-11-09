@@ -38,6 +38,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -47,16 +48,13 @@ import android.widget.Toast;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.games.Games;
-import com.google.android.gms.plus.Plus;
 import com.umeng.social.CCUMSocialController;
 
 public class AppActivity extends Cocos2dxActivity {
 
 	private AdView mAdView;
-	private GoogleApiClient mClient;
 	private WindowManager mWm = null;
+	private LHLeaderBoardActivity mLeaderBoard;
 
 	public static final int POS_CENTER = 0;
 	public static final int POS_TOP = 1;
@@ -120,25 +118,39 @@ public class AppActivity extends Cocos2dxActivity {
 		mAdView.loadAd(adRequestBuilder.build());
 		
 		CCUMSocialController.initSocialSDK(this, "com.umeng.social.share");
-		mClient = new GoogleApiClient.Builder(this)
-        .addApi(Plus.API)
-        .addScope(Plus.SCOPE_PLUS_LOGIN)
-        .setAccountName("users.account.name@gmail.com")
-        .build();
+		
+		mLeaderBoard = new LHLeaderBoardActivity(this);
+		
+		checkUser();
 	}
 	
-	@Override
-	protected void onStart() {
-		// TODO Auto-generated method stub
-		super.onStart();
-		mClient.connect();
-	}
 	
-	@Override
-	protected void onStop() {
-		// TODO Auto-generated method stub
-		super.onStop();
-		mClient.disconnect();
+	private void checkUser(){
+		String user = LHRequest.getUser(this);
+		
+		if (user==null&&LHRequest.getDeviceID(this)!=null) {
+			LHRequest request = new LHRequest(LHRequest.urlWithGetPair(LHRequest.LHLDURL, LHRequest.DEVICE,LHRequest.getDeviceID(this)));
+			request.requestWitUrl(new LHRequestHandler() {
+				
+				@Override
+				public void response(int requestcode, JSONObject obj) {
+					// TODO Auto-generated method stub
+					if (requestcode == LHRequestHandler.REQUEST_OK) {
+						if (obj.has("nouser")) {
+							mLeaderBoard.popSetUser();
+						}else{
+							try {
+								String username = obj.getString("res");
+								mLeaderBoard.setUser(username);
+							} catch (JSONException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}
+					}
+				}
+			});
+		}
 	}
 	
 	@Override
@@ -170,22 +182,34 @@ public class AppActivity extends Cocos2dxActivity {
 		}
 	}
 	
-	private static String mLeaderBoardId = "";
-	private static final int REQUEST_LEADERBOARD = 624;
-	
 	public void leaderBoardControl(JSONObject param){
+		if (LHRequest.getUser(this)==null) {
+			return;
+		}
+		
 		if (param.has("value")) {
 			try {
 				int value = param.getInt("value");
-				Games.Leaderboards.submitScore(mClient, mLeaderBoardId, value);
+				String high = ""+value;
+				String url = LHRequest.urlWithGetPair(LHRequest.LHLDURL, LHRequest.DEVICE,LHRequest.getDeviceID(this),LHRequest.GAME,LHRequest.getGame(this),LHRequest.HIGH,high);
+				LHRequest request = new LHRequest(url);
+				request.requestWitUrl(new LHRequestHandler() {
+					
+					@Override
+					public void response(int requestcode, JSONObject obj) {
+						// TODO Auto-generated method stub
+						if (requestcode == LHRequestHandler.REQUEST_OK) {
+							Log.d("lhgame", "upload score ok.");
+						}
+					}
+				});
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
 		}else{
-			startActivityForResult(Games.Leaderboards.getLeaderboardIntent(mClient,
-			        mLeaderBoardId), REQUEST_LEADERBOARD);
+			mLeaderBoard.showLeaderBoard();
 		}
 	}
     
@@ -240,10 +264,11 @@ public class AppActivity extends Cocos2dxActivity {
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 	    //二次返回退出
 	    if (keyCode == KeyEvent.KEYCODE_BACK) {
+	    	
 	        if ((System.currentTimeMillis() - mkeyTime) > 2000) {
 	            mkeyTime = System.currentTimeMillis();
 	            String text = null;
-	            if (getLan().endsWith("zh")) {
+	            if (isChinese()) {
 					text = "再按一次退出游戏";
 				}else{
 					text = "Click Again to exit";
@@ -256,6 +281,10 @@ public class AppActivity extends Cocos2dxActivity {
 	        return false;
 	    }
 	    return super.onKeyDown(keyCode, event);
+	}
+	
+	private boolean isChinese(){
+		return getLan().endsWith("zh");
 	}
 	
 	@Override

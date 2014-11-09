@@ -15,7 +15,7 @@
 
 class PHSprite : public cocos2d::Sprite{
 public:
-    static PHSprite* createWithName(const std::string name,cocos2d::Size size);
+    static PHSprite* createWithName(const std::string& name,cocos2d::Size size);
     
     static PHSprite* create(const std::string& filename);
 };
