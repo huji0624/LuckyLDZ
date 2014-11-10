@@ -35,6 +35,7 @@ private:
     float _focusLen;
     
     void focusOn(cocos2d::Vec2 center,float len,bool animate);
+    void focusOn(cocos2d::Vec2 center,float len,bool animate,cocos2d::CallFunc* complete);
     void popOutMainC();
     void gameEnd(float high);
 };

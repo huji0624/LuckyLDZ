@@ -117,6 +117,9 @@
 		A5F9E3D21A0E2DF40023ADB6 /* rb.png in Resources */ = {isa = PBXBuildFile; fileRef = A5F9E3D01A0E2DF40023ADB6 /* rb.png */; };
 		A5F9E3D41A0E2ED10023ADB6 /* rr.png in Resources */ = {isa = PBXBuildFile; fileRef = A5F9E3D31A0E2ED10023ADB6 /* rr.png */; };
 		A5F9E3D71A0E5D750023ADB6 /* PHSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5F9E3D51A0E5D750023ADB6 /* PHSprite.cpp */; };
+		A5F9E3E01A0FDA330023ADB6 /* ldz.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5F9E3DE1A0FDA330023ADB6 /* ldz.plist */; };
+		A5F9E3E11A0FDA330023ADB6 /* ldz.png in Resources */ = {isa = PBXBuildFile; fileRef = A5F9E3DF1A0FDA330023ADB6 /* ldz.png */; };
+		A5F9E3E31A1097C30023ADB6 /* ban_back.png in Resources */ = {isa = PBXBuildFile; fileRef = A5F9E3E21A1097C30023ADB6 /* ban_back.png */; };
 		A5FA68C51988A3BD00108DB9 /* LHShareButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5FA68C31988A3BD00108DB9 /* LHShareButton.cpp */; };
 		A5FA68C91988A3C500108DB9 /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = A5FA68C81988A3C500108DB9 /* share.png */; };
 		A5FA68D31988A89D00108DB9 /* LHLeaderBoard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5FA68D11988A89D00108DB9 /* LHLeaderBoard.cpp */; };
@@ -449,6 +452,9 @@
 		A5F9E3D31A0E2ED10023ADB6 /* rr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rr.png; sourceTree = "<group>"; };
 		A5F9E3D51A0E5D750023ADB6 /* PHSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PHSprite.cpp; path = ../Classes/PHSprite.cpp; sourceTree = "<group>"; };
 		A5F9E3D61A0E5D750023ADB6 /* PHSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PHSprite.h; path = ../Classes/PHSprite.h; sourceTree = "<group>"; };
+		A5F9E3DE1A0FDA330023ADB6 /* ldz.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ldz.plist; sourceTree = "<group>"; };
+		A5F9E3DF1A0FDA330023ADB6 /* ldz.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ldz.png; sourceTree = "<group>"; };
+		A5F9E3E21A1097C30023ADB6 /* ban_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ban_back.png; sourceTree = "<group>"; };
 		A5FA68C31988A3BD00108DB9 /* LHShareButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LHShareButton.cpp; path = ../Classes/LHShareButton.cpp; sourceTree = "<group>"; };
 		A5FA68C41988A3BD00108DB9 /* LHShareButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LHShareButton.h; path = ../Classes/LHShareButton.h; sourceTree = "<group>"; };
 		A5FA68C81988A3C500108DB9 /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share.png; sourceTree = "<group>"; };
@@ -682,6 +688,9 @@
 		78C7DDAA14EBA5050085D0C2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A5F9E3E21A1097C30023ADB6 /* ban_back.png */,
+				A5F9E3DE1A0FDA330023ADB6 /* ldz.plist */,
+				A5F9E3DF1A0FDA330023ADB6 /* ldz.png */,
 				A5F9E3D31A0E2ED10023ADB6 /* rr.png */,
 				A5F9E3CF1A0E2DF40023ADB6 /* back.tmx */,
 				A5F9E3D01A0E2DF40023ADB6 /* rb.png */,
@@ -1187,6 +1196,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5F9E3E31A1097C30023ADB6 /* ban_back.png in Resources */,
+				A5F9E3E11A0FDA330023ADB6 /* ldz.png in Resources */,
 				A5FA68D51988B8A100108DB9 /* leaderboard.png in Resources */,
 				A577E96D19810ABA0006052B /* ch_ls.plist in Resources */,
 				A5F9E3D11A0E2DF40023ADB6 /* back.tmx in Resources */,
@@ -1200,6 +1211,7 @@
 				A5AA430E196D299D00DC3411 /* UMSocialLocalizable.strings in Resources */,
 				A5AA4311196D299D00DC3411 /* UMSCommentDetailController.xib in Resources */,
 				1AFAF8BE16D35E4900DB1158 /* HelloWorld.png in Resources */,
+				A5F9E3E01A0FDA330023ADB6 /* ldz.plist in Resources */,
 				A5AA431F196D299D00DC3411 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				A5AA4317196D299D00DC3411 /* UMSnsAccountViewController.xib in Resources */,
 				A5F9E3D41A0E2ED10023ADB6 /* rr.png in Resources */,

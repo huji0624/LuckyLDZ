@@ -106,9 +106,9 @@ void PlayScene::initLevel(int level){
         fail->setPosition(Vec2(vs.width*2 + vo.x, vs.height/2 + vo.y));
         this->addChild(fail);
         
-        auto dl1 = DelayTime::create(2);
+        auto dl1 = DelayTime::create(1);
         auto mt = MoveTo::create(0.3, Vec2(vs.width/2 + vo.x, vs.height/2 + vo.y));
-        auto dl2 = DelayTime::create(4);
+        auto dl2 = DelayTime::create(2);
         CallFunc *call = CallFunc::create([this](){
             auto dict = Dictionary::create();
             dict->setObject(CCInteger::create(_scoreValue), "score");

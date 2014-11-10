@@ -36,6 +36,9 @@ bool AppDelegate::applicationDidFinishLaunching() {
     // set FPS. the default value is 1.0/60 if you don't call this
     director->setAnimationInterval(1.0 / 60);
 
+    //preload
+    SpriteFrameCache::getInstance()->addSpriteFramesWithFile("ldz.plist");
+    
 #ifdef LHDEBUG
     auto scene = PlayScene::createScene(nullptr);
 #else
@@ -43,7 +46,6 @@ bool AppDelegate::applicationDidFinishLaunching() {
     auto scene = HelloWorld::createScene();
 #endif
     
-
     // run
     director->runWithScene(scene);
     
