@@ -16,7 +16,6 @@ private:
     LDZGameLayer* _gameLayer;
     cocos2d::ui::Text* leveltext;
     int _curLevel;
-    int _scoreValue;
     
     //func
     void initLevel(int level);

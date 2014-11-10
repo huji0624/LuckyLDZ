@@ -9,7 +9,7 @@
 #ifndef LHCocosFirstGame_LHMacros_h
 #define LHCocosFirstGame_LHMacros_h
 
-#define LHDEBUG
+//#define LHDEBUG
 
 #define Common_Font "Arial"
 #define WX_APPID "wxcb288e76f7f3a7da"

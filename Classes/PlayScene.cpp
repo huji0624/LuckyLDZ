@@ -33,7 +33,6 @@ bool PlayScene::initDict(cocos2d::CCDictionary *dic)
     Vec2 vo = Director::getInstance()->getVisibleOrigin();
     
     leveltext = ui::Text::create("Level", Common_Font, 35);
-    leveltext -> setPosition(Vec2(vs.width/2 + vo.x, vs.height - leveltext->getContentSize().height/2 + vo.y));
     leveltext -> setColor(Color3B::BLACK);
     this->addChild(leveltext,1);
     
@@ -49,13 +48,15 @@ Node* PlayScene::getPassUI(){
     auto lo = ui::Layout::create();
     lo->setSize(vs);
     
-    auto pass =ui::Text::create("Big Cong!", Common_Font, 50);
-    pass->setPosition(Vec2(vs.width/2 , vs.height/3*2 ));
+    float margin = 10;
+    
+    auto pass =ui::Text::create(LHLocalizedCString("pass"), Common_Font, 50);
+    pass->setPosition(Vec2(vs.width/2 , vs.height/2 + pass->getContentSize().height/2 + margin ));
+    pass->setColor(Color3B(62,164,57));
     lo->addChild(pass);
     
-    auto bt = ui::Button::create("rb.png");
-    bt->setTitleText(LHLocalizedCString("next"));
-    bt->setPosition(Vec2(vs.width/2 , vs.height/3 ));
+    auto bt = ui::Button::create("next.png");
+    bt->setPosition(Vec2(vs.width/2 , vs.height/2 - bt->getContentSize().height/2 - margin));
     bt->addTouchEventListener([this,lo](Ref *ps,ui::Widget::TouchEventType type){
         if (type == ui::Widget::TouchEventType::ENDED) {
             this->initLevel(_curLevel+1);
@@ -71,11 +72,21 @@ Node* PlayScene::getPassUI(){
 void PlayScene::initLevel(int level){
     
     _curLevel = level;
-    int bestlevel = UserDefault::getInstance()->getIntegerForKey("best",0);
-    leveltext->setString(StringUtils::format("Level-%d Best:%d",(_curLevel),bestlevel));
     
     Size vs = Director::getInstance()->getVisibleSize();
     Vec2 vo = Director::getInstance()->getVisibleOrigin();
+    
+    int bestlevel = UserDefault::getInstance()->getIntegerForKey("best",0);
+    leveltext->setString(StringUtils::format("Level-%d Best:%d",(_curLevel),bestlevel));
+    leveltext -> setPosition(Vec2(vs.width/2 + vo.x, vs.height/2+ vo.y));
+    leveltext->setScale(2);
+    float time = 0.2f;
+    DelayTime *ldl = DelayTime::create(1);
+    MoveTo *mv = MoveTo::create(time, Vec2(vs.width/2 + vo.x, vs.height - leveltext->getContentSize().height/2 + vo.y));
+    ScaleTo *sc = ScaleTo::create(time, 1.0f);
+    Spawn *sp = Spawn::create(mv,sc, NULL);
+    Sequence *sq = Sequence::create(ldl,sp, NULL);
+    leveltext->runAction(sq);
     
     if (_gameLayer!=nullptr) {
         _gameLayer->removeFromParent();
@@ -101,9 +112,16 @@ void PlayScene::initLevel(int level){
         auto mt = MoveTo::create(0.3, Vec2(vo.x,  vo.y));
         passui->runAction(mt);
     };
-    _gameLayer->onGameOver = [this,vs,vo](){
-        auto fail = ui::Text::create("You Fail!", Common_Font, 50);
+    _gameLayer->onGameOver = [this,vs,vo](bool r){
+        
+        auto fail = ui::Text::create("", Common_Font, 50);
+        if (r) {
+            fail->setString(LHLocalizedCString("noenough"));
+        }else{
+            fail->setString(LHLocalizedCString("toomuch"));
+        }
         fail->setPosition(Vec2(vs.width*2 + vo.x, vs.height/2 + vo.y));
+        fail->setColor(Color3B::RED);
         this->addChild(fail);
         
         auto dl1 = DelayTime::create(1);
@@ -111,9 +129,8 @@ void PlayScene::initLevel(int level){
         auto dl2 = DelayTime::create(2);
         CallFunc *call = CallFunc::create([this](){
             auto dict = Dictionary::create();
-            dict->setObject(CCInteger::create(_scoreValue), "score");
-            auto tran = TransitionSlideInR::create(0.4, GameOverScene::createScene(dict));
-            Director::getInstance()->replaceScene(tran);
+            dict->setObject(CCInteger::create(_curLevel), "score");
+            Director::getInstance()->replaceScene(GameOverScene::createScene(dict));
         });
         auto sq = Sequence::create(dl1,mt,dl2,call, NULL);
         fail->runAction(sq);

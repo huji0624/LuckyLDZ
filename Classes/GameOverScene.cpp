@@ -42,14 +42,20 @@ bool GameOverScene::initDict(cocos2d::CCDictionary *dic)
     ThirdPartyHelper::setAd(SET_AD_SHOW);
     
     Size vs = Director::getInstance()->getVisibleSize();
+    Vec2 vo = Director::getInstance()->getVisibleOrigin();
     godelay = 0;
     
     CCInteger *score = (CCInteger*)dic->objectForKey("score");
     
-    //    auto name = ui::Text::create(LHLocalizedCString("appname"), Common_Font, 70);
-    //    name->setColor(Color3B(64, 119, 215));
-    //    name->setPosition(Vec2(vs.width/2, vs.height/4*3) );
-    //    this->addChild(name);
+    auto bg = Sprite::createWithSpriteFrameName("bg.png");
+    bg->setPosition(Vec2(vs.width/2 + vo.x, vs.height/2 + vo.y));
+    this->addChild(bg);
+    
+    auto panel = Sprite::create("panel.png");
+    panel->setPosition(bg->getPosition());
+    panel->setScaleX(2);
+    panel->setScaleY(3.5);
+    this->addChild(panel);
     
     auto gameover = ui::Text::create(LHLocalizedCString("gameover"), Common_Font, 70);
     gameover->setPosition(Vec2(vs.width/2, vs.height/3*2));
@@ -74,8 +80,7 @@ bool GameOverScene::initDict(cocos2d::CCDictionary *dic)
     float by = vs.height/6;
     float fs = 40;
     
-    auto replay = ui::Button::create("rb.png");
-    replay->setTitleText(LHLocalizedCString("replay"));
+    auto replay = ui::Button::create("replay.png");
     replay->setTitleFontSize(fs);
     replay->setPosition(Vec2(vs.width/2, vs.height/3));
     replay->addTouchEventListener([](Ref *ps,ui::Widget::TouchEventType type){
@@ -86,10 +91,9 @@ bool GameOverScene::initDict(cocos2d::CCDictionary *dic)
     this->addChild(replay);
     show(replay);
     
-    auto back = ui::Button::create("rb.png");
+    auto back = ui::Button::create("back.png");
     back->setPosition(Vec2(vs.width/4, by));
     back->setTitleFontSize(fs);
-    back->setTitleText(LHLocalizedCString("back"));
     back->addTouchEventListener([](Ref *ps,ui::Widget::TouchEventType type){
         if (type == ui::Widget::TouchEventType::ENDED) {
             Director::getInstance()->replaceScene(HelloWorld::createScene());
@@ -98,16 +102,14 @@ bool GameOverScene::initDict(cocos2d::CCDictionary *dic)
     this->addChild(back);
     show(back);
     
-    auto share = LHShareButton::defaultButton("rb.png",LHLocalizedCString("ldz"));
+    auto share = LHShareButton::defaultButton("share.png","LuckyGame");
     share->setTitleFontSize(fs);
-    share->setTitleText(LHLocalizedCString("share"));
     share->setPosition(Vec2(vs.width/2, by));
     this->addChild(share);
     show(share);
     
-    std::string lb = "rb.png";
+    std::string lb = "lb.png";
     auto leader = LHLeaderBoard::defaultButton(lb);
-    leader->setTitleText(LHLocalizedCString("leaderboard"));
     leader->setTitleFontSize(fs);
     leader->setPosition(Vec2(vs.width/4*3, by));
     this->addChild(leader);

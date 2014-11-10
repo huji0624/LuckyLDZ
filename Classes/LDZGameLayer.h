@@ -17,7 +17,7 @@ public:
     virtual ~LDZGameLayer();
     void update(float delta);
     
-    std::function<void()> onGameOver;
+    std::function<void(bool r)> onGameOver;
     std::function<void()> onGamePass;
 private:
     cocos2d::Size _mapSize;

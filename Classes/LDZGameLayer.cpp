@@ -64,9 +64,9 @@ void LDZGameLayer::initLevel(int level){
     _powerProg = progress;
     
     //limit
-    float height = 480/level*1.5;
-    float dy = level*150+400;
-    float uy = dy+height;
+    float height = 400/level*1.5;
+    float uy = level*150+800;
+    float dy = uy - height;
     _upLimit = Sprite::createWithSpriteFrameName("limit.png");
     _upLimit->setPosition(_mapSize.width/2, uy);
     this->addChild(_upLimit);
@@ -76,7 +76,7 @@ void LDZGameLayer::initLevel(int level){
     
     //guide
     auto gt = ui::Text::create(LHLocalizedCString("guidetext"), Common_Font, 35);
-    gt->setColor(Color3B(250, 201, 11));
+    gt->setColor(Color3B::RED);
     gt->setPosition(Vec2(_mainC->getPosition().x , _mainC->getBoundingBox().getMaxY() + gt->getContentSize().height/2));
     this->addChild(gt);
     auto bl = Blink::create(1, 1);
@@ -198,10 +198,12 @@ void LDZGameLayer::gameEnd(float high){
         this->addChild(mark);
     }
     
-    if (high <= _upLimit->getPositionY() && high >= _downLimit->getPositionY()) {
-        onGamePass();
+    if (_mainC->getPositionY() > _upLimit->getPositionY() ) {
+        onGameOver(false);
+    }else if( _mainC->getPositionY() < _downLimit->getPositionY()){
+        onGameOver(true);
     }else{
-        onGameOver();
+        onGamePass();
     }
 }
 

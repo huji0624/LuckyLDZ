@@ -11,6 +11,14 @@
 	<key>gamedesign</key>
 	<string>游戏设计</string>
 	<key>appname</key>
-	<string>LDZ</string>
+	<string>撸的准</string>
+	<key>pass</key>
+	<string>恭喜过关！</string>
+	<key>guidetext</key>
+	<string>触摸香蕉并滑动！</string>
+	<key>toomuch</key>
+	<string>撸太狠了！</string>
+	<key>noenough</key>
+	<string>不给力啊！</string>
 </dict>
 </plist>
