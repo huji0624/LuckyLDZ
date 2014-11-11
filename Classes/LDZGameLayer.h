@@ -28,12 +28,14 @@ private:
     cocos2d::Sprite* _upLimit;
     cocos2d::Sprite* _downLimit;
     cocos2d::ProgressTimer* _powerProg;
+    cocos2d::Sprite* _powerProgBack;
     
     cocos2d::TMXTiledMap* _map;
     int _mode;
     cocos2d::Vec2 _focusCenter;
     float _focusLen;
     float _flyWav;
+    float _powerCount;
     
     void focusOn(cocos2d::Vec2 center,float len,bool animate);
     void focusOn(cocos2d::Vec2 center,float len,bool animate,cocos2d::CallFunc* complete);

@@ -15,11 +15,12 @@ USING_NS_CC;
 
 #define ANI_TIME 0.3f
 
-#define MODE_BEGAIN 4
 #define MODE_VIEW 0
 #define MODE_POWER 1
 #define MODE_FLY 2
 #define MODE_END 3
+#define MODE_BEGAIN 4
+#define MODE_POWER_END 5
 
 #define GAS 20.0f
 #define MOVE_FACTOR 1.0f
@@ -65,6 +66,7 @@ void LDZGameLayer::initLevel(int level){
     progress->setVisible(false);
     progback->setVisible(false);
     _powerProg = progress;
+    _powerProgBack = progback;
     
     //limit
     float height = 400/level*1.5;
@@ -122,6 +124,8 @@ void LDZGameLayer::initLevel(int level){
                 progback->setVisible(true);
                 progress->setPercentage(1);
             }
+        }else if (_mode == MODE_POWER_END){
+            _mode = MODE_POWER;
         }
         
         return true;
@@ -142,13 +146,10 @@ void LDZGameLayer::initLevel(int level){
             this->update(0.2f);
         }
     };
-    lis->onTouchEnded = [this,progback,progress](Touch*, Event*){
+    lis->onTouchEnded = [this](Touch*, Event*){
         if (_mode == MODE_POWER) {
-            this->popOutMainC();
-            _mode = MODE_FLY;
-            
-            progress->setVisible(false);
-            progback->setVisible(false);
+            _mode = MODE_POWER_END;
+            _powerCount = 0.1f;
         }
     };
     this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(lis, this);
@@ -166,6 +167,11 @@ void LDZGameLayer::initLevel(int level){
 }
 
 void LDZGameLayer::popOutMainC(){
+    _mode = MODE_FLY;
+    
+    _powerProg->setVisible(false);
+    _powerProgBack->setVisible(false);
+    
     _mainCVSpeed =  SPEED_FACTOR * _powerProg->getPercentage();
     
     _mainC->setSpriteFrame("ban_fly.png");
@@ -223,6 +229,11 @@ void LDZGameLayer::update(float delta){
             intper=50;
         }
         _mainC->setSpriteFrame(StringUtils::format("%d.png",(intper)));
+    }else if(_mode == MODE_POWER_END){
+        _powerCount-=delta;
+        if (_powerCount<=0) {
+            this->popOutMainC();
+        }
     }
 }
 
