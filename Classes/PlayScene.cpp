@@ -77,7 +77,7 @@ void PlayScene::initLevel(int level){
     Vec2 vo = Director::getInstance()->getVisibleOrigin();
     
     int bestlevel = UserDefault::getInstance()->getIntegerForKey("best",0);
-    leveltext->setString(StringUtils::format("Level-%d Best:%d",(_curLevel),bestlevel));
+    leveltext->setString(StringUtils::format("%s:%d %s:%d",LHLocalizedCString("level"),(_curLevel),LHLocalizedCString("best"),bestlevel));
     leveltext -> setPosition(Vec2(vs.width/2 + vo.x, vs.height/2+ vo.y));
     leveltext->setScale(2);
     float time = 0.2f;
@@ -114,6 +114,8 @@ void PlayScene::initLevel(int level){
     };
     _gameLayer->onGameOver = [this,vs,vo](bool r){
         
+        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("fail.wav");
+        
         auto fail = ui::Text::create("", Common_Font, 50);
         if (r) {
             fail->setString(LHLocalizedCString("noenough"));
@@ -124,15 +126,14 @@ void PlayScene::initLevel(int level){
         fail->setColor(Color3B::RED);
         this->addChild(fail);
         
-        auto dl1 = DelayTime::create(1);
         auto mt = MoveTo::create(0.3, Vec2(vs.width/2 + vo.x, vs.height/2 + vo.y));
-        auto dl2 = DelayTime::create(2);
+        auto dl2 = DelayTime::create(1.5);
         CallFunc *call = CallFunc::create([this](){
             auto dict = Dictionary::create();
             dict->setObject(CCInteger::create(_curLevel), "score");
             Director::getInstance()->replaceScene(GameOverScene::createScene(dict));
         });
-        auto sq = Sequence::create(dl1,mt,dl2,call, NULL);
+        auto sq = Sequence::create(mt,dl2,call, NULL);
         fail->runAction(sq);
     };
 }

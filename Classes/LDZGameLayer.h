@@ -33,6 +33,7 @@ private:
     int _mode;
     cocos2d::Vec2 _focusCenter;
     float _focusLen;
+    float _flyWav;
     
     void focusOn(cocos2d::Vec2 center,float len,bool animate);
     void focusOn(cocos2d::Vec2 center,float len,bool animate,cocos2d::CallFunc* complete);

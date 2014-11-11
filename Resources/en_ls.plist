@@ -11,14 +11,22 @@
 	<key>gamedesign</key>
 	<string>Game Design</string>
 	<key>appname</key>
-	<string>JERK OFF HIGH</string>
+	<string>Flying Banana</string>
 	<key>pass</key>
 	<string>Big Cong!</string>
 	<key>guidetext</key>
 	<string>Touch the banana and move to start!</string>
+	<key>guidetext2</key>
+	<string>Make the banana&apos;s top point in this</string>
 	<key>toomuch</key>
 	<string>Wow!It is too much!</string>
 	<key>noenough</key>
 	<string>Oh!Not enough!</string>
+	<key>level</key>
+	<string>Level</string>
+	<key>best</key>
+	<string>Best</string>
+	<key>gameover</key>
+	<string>Game Over</string>
 </dict>
 </plist>

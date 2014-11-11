@@ -21,9 +21,12 @@ USING_NS_CC;
 #define MODE_FLY 2
 #define MODE_END 3
 
-#define GAS 9.8f
-#define MOVE_FACTOR 12.0f
-#define DECRE_FACTOR 2.0f
+#define GAS 20.0f
+#define MOVE_FACTOR 1.0f
+#define DECRE_FACTOR 4.0f
+#define SPEED_FACTOR 5.0f
+
+#define FLY_WAV 3.0f
 
 LDZGameLayer::~LDZGameLayer(){
     this->getEventDispatcher()->removeEventListenersForTarget(this);
@@ -45,7 +48,7 @@ void LDZGameLayer::initLevel(int level){
     //main char
     _mainC = Sprite::createWithSpriteFrameName("1.png");
     _mainC->setPosition(_mapSize.width/2, _mainC->getContentSize().height/2 + 10);
-    this->addChild(_mainC);
+    this->addChild(_mainC,1);
     
     //progress
     auto progress = ProgressTimer::create(Sprite::createWithSpriteFrameName("tempb.png"));
@@ -65,7 +68,14 @@ void LDZGameLayer::initLevel(int level){
     
     //limit
     float height = 400/level*1.5;
+    float HIGH_THRE = 80;
+    if (height<HIGH_THRE) {
+        height = HIGH_THRE;
+    }
     float uy = level*150+800;
+    if (uy >= _mapSize.height) {
+        uy = _mapSize.height/3*2 + _mapSize.height/3*CCRANDOM_0_1() - 5;
+    }
     float dy = uy - height;
     _upLimit = Sprite::createWithSpriteFrameName("limit.png");
     _upLimit->setPosition(_mapSize.width/2, uy);
@@ -79,28 +89,38 @@ void LDZGameLayer::initLevel(int level){
     gt->setColor(Color3B::RED);
     gt->setPosition(Vec2(_mainC->getPosition().x , _mainC->getBoundingBox().getMaxY() + gt->getContentSize().height/2));
     this->addChild(gt);
-    auto bl = Blink::create(1, 1);
-    auto rp = RepeatForever::create(bl);
-    gt->runAction(rp);
+    
+    auto gt2 = ui::Text::create(LHLocalizedCString("guidetext2"), Common_Font, 35);
+    gt2->setColor(Color3B::RED);
+    gt2->setPosition(Vec2(_mainC->getPosition().x,_downLimit->getPositionY()+height/2));
+    this->addChild(gt2);
+    auto da = Sprite::create("da.png");
+    da->setScaleY(height/da->getContentSize().height);
+    da->setPosition(Vec2(gt2->getContentSize().width/2, gt2->getContentSize().height/2));
+    gt2->addChild(da);
     
     auto lis = EventListenerTouchOneByOne::create();
-    lis->onTouchBegan = [this,gt,progress,progback](Touch* tmpTouch, Event*){
+    lis->onTouchBegan = [this,gt,progress,progback,gt2](Touch* tmpTouch, Event*){
         if (_mode == MODE_VIEW) {
             Vec2 loca = tmpTouch->getLocation();
             loca = this->convertToNodeSpace(loca);
             if (_mainC->getBoundingBox().containsPoint(loca)) {
-                float focusMargin = 20;
-                this->focusOn(_mainC->getPosition(), _mainC->getContentSize().height + focusMargin, true);
-                _mode = MODE_POWER;
+                CallFunc *call = CallFunc::create([this](){
+                    _mode = MODE_POWER;
+                    this->scheduleUpdate();
+                    CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("wiso.wav");
+                });
                 
-                gt->stopAllActions();
+                float focusMargin = 20;
+                this->focusOn(_mainC->getPosition(), _mainC->getContentSize().height + focusMargin, true , call);
+                _mode = MODE_BEGAIN;
+                
                 gt->removeFromParent();
+                gt2->removeFromParent();
                 
                 progress->setVisible(true);
                 progback->setVisible(true);
-                progress->setPercentage(0);
-                
-                this->scheduleUpdate();
+                progress->setPercentage(1);
             }
         }
         
@@ -117,9 +137,9 @@ void LDZGameLayer::initLevel(int level){
             this->focusOn(Vec2(_focusCenter.x , toy),_focusLen, false);
         }else if (_mode == MODE_POWER){
             float dy = fabsf(cu.y - last.y);
-            _powerProg->setPercentage(_powerProg->getPercentage()+dy/(_powerProg->getPercentage()+MOVE_FACTOR));
+            _powerProg->setPercentage(_powerProg->getPercentage()+dy/_powerProg->getPercentage()/MOVE_FACTOR);
         }else if (_mode == MODE_FLY){
-            this->update(0.1f);
+            this->update(0.2f);
         }
     };
     lis->onTouchEnded = [this,progback,progress](Touch*, Event*){
@@ -146,19 +166,26 @@ void LDZGameLayer::initLevel(int level){
 }
 
 void LDZGameLayer::popOutMainC(){
-    _mainCVSpeed = 3 * _powerProg->getPercentage();
+    _mainCVSpeed =  SPEED_FACTOR * _powerProg->getPercentage();
+    
+    _mainC->setSpriteFrame("ban_fly.png");
+    auto banpi = Sprite::createWithSpriteFrameName("ban_pi.png");
+    banpi->setPosition(_mainC->getPosition());
+    this->addChild(banpi);
+    
+    CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("pop.wav");
+    _flyWav = FLY_WAV;
 }
 
 void LDZGameLayer::update(float delta){
     if (_mode == MODE_FLY || _mode == MODE_END) {
         float dy = _mainCVSpeed*delta;
         _mainC->setPosition(_mainC->getPositionX(), _mainC->getPositionY()+dy);
-        _mainCVSpeed -= GAS*delta;
+        _mainCVSpeed -= (GAS + _mainCVSpeed/10)*delta;
         
         if (_mode == MODE_FLY) {
             if (_mainC->getPositionY()<_upLimit->getPositionY()) {
                 Size vs = Director::getInstance()->getVisibleSize();
-//                float focusY = (_upLimit->getPositionY() + _mainC->getBoundingBox().getMinY())/2;
                 float focusL = _upLimit->getPositionY()+20 - _mainC->getBoundingBox().getMinY();
                 if (focusL < vs.width) {
                     focusOn(_mainC->getPosition(), focusL, false);
@@ -168,13 +195,21 @@ void LDZGameLayer::update(float delta){
             }else{
                 focusOn(Vec2(_mainC->getPositionX(),_mainC->getPositionY()), _focusLen, false);
             }
+            
+            //fly audio
+            _flyWav -= delta;
+            if (_flyWav<0) {
+                CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("fly.wav");
+                _flyWav = FLY_WAV;
+            }
         }
         
         if (_mode == MODE_FLY) {
             if (_mainCVSpeed<=0) {
                 _mode = MODE_END;
                 this->gameEnd(_mainC->getPositionY());
-            }else if(_mainC->getPositionY()>(_upLimit->getPositionY()+150)){
+            }
+            else if(_mainC->getPositionY()>(_upLimit->getPositionY()+150)){
                 _mode = MODE_END;
                 this->gameEnd(-1);
             }
@@ -192,6 +227,7 @@ void LDZGameLayer::update(float delta){
 }
 
 void LDZGameLayer::gameEnd(float high){
+    
     if (high>0) {
         Sprite* mark = Sprite::createWithSpriteFrameName("endline.png");
         mark->setPosition(_mapSize.width/2, high);
@@ -203,11 +239,13 @@ void LDZGameLayer::gameEnd(float high){
     }else if( _mainC->getPositionY() < _downLimit->getPositionY()){
         onGameOver(true);
     }else{
+        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("pass.wav");
         onGamePass();
     }
 }
 
 void LDZGameLayer::focusOn(cocos2d::Vec2 center, float len, bool animate, cocos2d::CallFunc *complete){
+    
     Size vs = Director::getInstance()->getVisibleSize();
     Vec2 vo = Director::getInstance()->getVisibleOrigin();
     

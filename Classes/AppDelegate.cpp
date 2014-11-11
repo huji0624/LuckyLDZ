@@ -38,6 +38,11 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
     //preload
     SpriteFrameCache::getInstance()->addSpriteFramesWithFile("ldz.plist");
+    CocosDenshion::SimpleAudioEngine::getInstance()->preloadEffect("pop.wav");
+    CocosDenshion::SimpleAudioEngine::getInstance()->preloadEffect("fly.wav");
+    CocosDenshion::SimpleAudioEngine::getInstance()->preloadEffect("pass.wav");
+    CocosDenshion::SimpleAudioEngine::getInstance()->preloadEffect("fail.wav");
+    CocosDenshion::SimpleAudioEngine::getInstance()->preloadEffect("wiso.wav");
     
 #ifdef LHDEBUG
     auto scene = PlayScene::createScene(nullptr);
@@ -59,12 +64,12 @@ void AppDelegate::applicationDidEnterBackground() {
     Director::getInstance()->stopAnimation();
 
     // if you use SimpleAudioEngine, it must be pause
-    // SimpleAudioEngine::getInstance()->pauseBackgroundMusic();
+    //CocosDenshion::SimpleAudioEngine::getInstance()->pauseBackgroundMusic();
     
-    int sceneTag = Director::getInstance()->getRunningScene()->getTag();
-    if (sceneTag > 0) {
-        Director::getInstance()->pushScene(LHPauseScene::createScene(nullptr));
-    }
+//    int sceneTag = Director::getInstance()->getRunningScene()->getTag();
+//    if (sceneTag > 0) {
+//        Director::getInstance()->pushScene(LHPauseScene::createScene(nullptr));
+//    }
 }
 
 // this function will be called when the app is active again
@@ -72,5 +77,5 @@ void AppDelegate::applicationWillEnterForeground() {
     Director::getInstance()->startAnimation();
 
     // if you use SimpleAudioEngine, it must resume here
-    // SimpleAudioEngine::getInstance()->resumeBackgroundMusic();
+    //CocosDenshion::SimpleAudioEngine::getInstance()->resumeBackgroundMusic();
 }
