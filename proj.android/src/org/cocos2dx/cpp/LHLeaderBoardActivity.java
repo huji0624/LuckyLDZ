@@ -8,6 +8,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.lhgame.flyingbanana.R;
+
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -19,8 +21,6 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
-
-import com.lhgame.luckypuzzle.R;
 
 public class LHLeaderBoardActivity {
 
@@ -103,6 +103,15 @@ public class LHLeaderBoardActivity {
 
 		mMyValue = (TextView) view.findViewById(R.id.myrank);
 		mListView = (ListView) view.findViewById(R.id.toprank);
+		
+		if (isChinese()) {
+			TextView alluser = (TextView)view.findViewById(R.id.alluser);
+			TextView allrank = (TextView)view.findViewById(R.id.allrank);
+			TextView allrsult = (TextView)view.findViewById(R.id.allresult);
+			alluser.setText("用户");
+			allrank.setText("排名");
+			allrsult.setText("成绩");
+		}
 
 		String url = LHRequest.urlWithGetPair(LHRequest.LHLDURL,
 				LHRequest.DEVICE, LHRequest.getDeviceID(mContext), LHRequest.USER,
@@ -139,14 +148,18 @@ public class LHLeaderBoardActivity {
 							String tmphigh = tmpobj.getString(LHRequest.HIGH);
 							String tmprank = "" + (i+1);
 							HashMap<String, Object> map = new HashMap<String, Object>();
-							map.put("text",
-									formatHigh(tmpuser, tmphigh, tmprank));
+							map.put("user",
+									tmpuser);
+							map.put("rank",
+									 tmprank);
+							map.put("high",
+									tmphigh);
 							listItem.add(map);
 						}
 						SimpleAdapter adp = new SimpleAdapter(
 								mContext, listItem,
-								R.layout.lhld_item, new String[] { "text" },
-								new int[] { R.id.lhld });
+								R.layout.lhld_item, new String[] { "user","rank","high" },
+								new int[] { R.id.lhld1,R.id.lhld2,R.id.lhld3 });
 						mListView.setAdapter(adp);
 					} catch (JSONException e) {
 						// TODO Auto-generated catch block

@@ -108,7 +108,7 @@ public class AppActivity extends Cocos2dxActivity {
 
 		mAdView = new AdView(this);
 		mAdView.setAdSize(AdSize.BANNER);
-		mAdView.setAdUnitId("ca-app-pub-9455502179330810/2117785287");
+		mAdView.setAdUnitId("ca-app-pub-9455502179330810/8113299685");
 
 		// Create an ad request.
 		AdRequest.Builder adRequestBuilder = new AdRequest.Builder();
@@ -247,8 +247,7 @@ public class AppActivity extends Cocos2dxActivity {
 
     
     public void goReview(JSONObject param){
-        String appId = "com.luckyhu.game";
-        String playurl = "https://play.google.com/store/apps/details?id=" + appId;
+        String playurl = "https://play.google.com/store/apps/details?id=" + getPackageName();
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse(playurl));
         startActivity(intent);

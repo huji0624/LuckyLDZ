@@ -34,6 +34,7 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
 ../../Classes/NDKHelper/NDKCallbackNode.cpp \
 ../../Classes/NDKHelper/NDKHelper.cpp \
 ../../Classes/PlayScene.cpp \
+../../Classes/LDZGameLayer.cpp \
 ../../Classes/ThirdPartyHelper.cpp \
 ../../Classes/UMShareButton.cpp
 

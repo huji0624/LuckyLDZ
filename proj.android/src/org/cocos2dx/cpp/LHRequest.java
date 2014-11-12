@@ -37,7 +37,7 @@ public class LHRequest {
 	private static final String VT_B = "b";//保存最大值
 	private static final String VT_S = "s";//保存最小值
 	
-	public static final String VT_V = VT_S;
+	public static final String VT_V = VT_B;
 	
 	private String mUrl;
 	private LHRequestHandler mRequestHandler;
