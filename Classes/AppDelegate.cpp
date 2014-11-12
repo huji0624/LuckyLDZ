@@ -8,6 +8,9 @@
 
 USING_NS_CC;
 
+#define DESW 640
+#define DESH 1136
+
 AppDelegate::AppDelegate() {
 
 }
@@ -35,6 +38,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
     // set FPS. the default value is 1.0/60 if you don't call this
     director->setAnimationInterval(1.0 / 60);
+    director->getOpenGLView()->setDesignResolutionSize(DESW, DESH, ResolutionPolicy::NO_BORDER);
 
     //preload
     SpriteFrameCache::getInstance()->addSpriteFramesWithFile("ldz.plist");

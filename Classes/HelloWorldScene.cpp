@@ -38,6 +38,8 @@ bool HelloWorld::init()
         return false;
     }
     
+    ThirdPartyHelper::setAd(SET_AD_SHOW);
+    
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
     
@@ -62,6 +64,7 @@ bool HelloWorld::init()
     play->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 - play->getContentSize().height/2 - margin + origin.y));
     play->addTouchEventListener([](Ref *ps,ui::Widget::TouchEventType type){
         if (type == ui::Widget::TouchEventType::ENDED) {
+            ThirdPartyHelper::setAd(SET_AD_HID);
             Director::getInstance()->replaceScene(PlayScene::createScene(nullptr));
         }
     });
@@ -70,6 +73,19 @@ bool HelloWorld::init()
     auto debt = DeveloperInfo::DevInfoButton("devinfo.png");
     debt->setPosition(Vec2(appname->getPositionX() + appname->getContentSize().width/2 + 40, appname->getPositionY() + appname->getContentSize().height/2 + 20));
     this->addChild(debt);
+    
+    auto leader = LHLeaderBoard::defaultButton("lb.png");
+    leader->setPosition(Vec2(visibleSize.width/3*2 + origin.x, visibleSize.height/4 + origin.y));
+    this->addChild(leader);
+    
+    auto goReview = ui::Button::create("goreview.png");
+    goReview->setPosition(Vec2(visibleSize.width/3 + origin.x, visibleSize.height/4 + origin.y));
+    goReview->addTouchEventListener([](Ref *ps,ui::Widget::TouchEventType type){
+        if (type == ui::Widget::TouchEventType::ENDED) {
+            ThirdPartyHelper::goReview();
+        }
+    });
+    this->addChild(goReview);
     
     return true;
 }

@@ -25,7 +25,7 @@ void ThirdPartyHelper::setAd(int tag){
 void ThirdPartyHelper::uploadScore(int score){
     CCDictionary *dic = CCDictionary::create();
     dic->setObject(CCString::create(StringUtils::format("%d",score)), "value");
-    dic->setObject(CCString::create("best"), "cat");
+    dic->setObject(CCString::create("lbbest"), "cat");
     SendMessageWithParams("leaderBoardControl", dic);
 }
 

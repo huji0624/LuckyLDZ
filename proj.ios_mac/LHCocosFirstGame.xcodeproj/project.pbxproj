@@ -131,6 +131,23 @@
 		A5F9E3F51A11DD320023ADB6 /* fail.wav in Resources */ = {isa = PBXBuildFile; fileRef = A5F9E3F41A11DD320023ADB6 /* fail.wav */; };
 		A5F9E3F91A11E2FB0023ADB6 /* wiso.wav in Resources */ = {isa = PBXBuildFile; fileRef = A5F9E3F71A11E2FB0023ADB6 /* wiso.wav */; };
 		A5F9E4061A1205060023ADB6 /* da.png in Resources */ = {isa = PBXBuildFile; fileRef = A5F9E4051A1205060023ADB6 /* da.png */; };
+		A5F9E41C1A1235C20023ADB6 /* icon-29.png in Resources */ = {isa = PBXBuildFile; fileRef = A5F9E40F1A1235C20023ADB6 /* icon-29.png */; };
+		A5F9E41D1A1235C20023ADB6 /* icon-40.png in Resources */ = {isa = PBXBuildFile; fileRef = A5F9E4101A1235C20023ADB6 /* icon-40.png */; };
+		A5F9E41E1A1235C20023ADB6 /* icon-50.png in Resources */ = {isa = PBXBuildFile; fileRef = A5F9E4111A1235C20023ADB6 /* icon-50.png */; };
+		A5F9E41F1A1235C20023ADB6 /* icon-57.png in Resources */ = {isa = PBXBuildFile; fileRef = A5F9E4121A1235C20023ADB6 /* icon-57.png */; };
+		A5F9E4201A1235C20023ADB6 /* icon-58.png in Resources */ = {isa = PBXBuildFile; fileRef = A5F9E4131A1235C20023ADB6 /* icon-58.png */; };
+		A5F9E4211A1235C20023ADB6 /* icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = A5F9E4141A1235C20023ADB6 /* icon-72.png */; };
+		A5F9E4221A1235C20023ADB6 /* icon-76.png in Resources */ = {isa = PBXBuildFile; fileRef = A5F9E4151A1235C20023ADB6 /* icon-76.png */; };
+		A5F9E4231A1235C20023ADB6 /* icon-80.png in Resources */ = {isa = PBXBuildFile; fileRef = A5F9E4161A1235C20023ADB6 /* icon-80.png */; };
+		A5F9E4241A1235C20023ADB6 /* icon-100.png in Resources */ = {isa = PBXBuildFile; fileRef = A5F9E4171A1235C20023ADB6 /* icon-100.png */; };
+		A5F9E4251A1235C20023ADB6 /* icon-114.png in Resources */ = {isa = PBXBuildFile; fileRef = A5F9E4181A1235C20023ADB6 /* icon-114.png */; };
+		A5F9E4261A1235C20023ADB6 /* icon-120.png in Resources */ = {isa = PBXBuildFile; fileRef = A5F9E4191A1235C20023ADB6 /* icon-120.png */; };
+		A5F9E4271A1235C20023ADB6 /* icon-144.png in Resources */ = {isa = PBXBuildFile; fileRef = A5F9E41A1A1235C20023ADB6 /* icon-144.png */; };
+		A5F9E4281A1235C20023ADB6 /* icon-152.png in Resources */ = {isa = PBXBuildFile; fileRef = A5F9E41B1A1235C20023ADB6 /* icon-152.png */; };
+		A5F9E42C1A1235F90023ADB6 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A5F9E4291A1235F90023ADB6 /* Default-568h@2x.png */; };
+		A5F9E42D1A1235F90023ADB6 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = A5F9E42A1A1235F90023ADB6 /* Default.png */; };
+		A5F9E42E1A1235F90023ADB6 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A5F9E42B1A1235F90023ADB6 /* Default@2x.png */; };
+		A5F9E4371A1248290023ADB6 /* goreview.png in Resources */ = {isa = PBXBuildFile; fileRef = A5F9E4361A1248290023ADB6 /* goreview.png */; };
 		A5FA68C51988A3BD00108DB9 /* LHShareButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5FA68C31988A3BD00108DB9 /* LHShareButton.cpp */; };
 		A5FA68C91988A3C500108DB9 /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = A5FA68C81988A3C500108DB9 /* share.png */; };
 		A5FA68D31988A89D00108DB9 /* LHLeaderBoard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5FA68D11988A89D00108DB9 /* LHLeaderBoard.cpp */; };
@@ -295,7 +312,7 @@
 		1AFAF8B616D35DE700DB1158 /* HelloWorldScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HelloWorldScene.h; path = ../Classes/HelloWorldScene.h; sourceTree = "<group>"; };
 		1AFAF8BB16D35E4900DB1158 /* HelloWorld.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HelloWorld.png; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		1D6058910D05DD3D006BFB54 /* Flying Banana.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Flying Banana.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D6058910D05DD3D006BFB54 /* Flying Banana.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "Flying Banana.app"; path = "Lu Banana.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		503AE0F617EB97AB00D1A890 /* Icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Icon.icns; sourceTree = "<group>"; };
@@ -476,6 +493,23 @@
 		A5F9E3F41A11DD320023ADB6 /* fail.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = fail.wav; sourceTree = "<group>"; };
 		A5F9E3F71A11E2FB0023ADB6 /* wiso.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = wiso.wav; sourceTree = "<group>"; };
 		A5F9E4051A1205060023ADB6 /* da.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = da.png; sourceTree = "<group>"; };
+		A5F9E40F1A1235C20023ADB6 /* icon-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-29.png"; path = "LHCocosFirstGame iOS/Images.xcassets/AppIcon.appiconset/icon-29.png"; sourceTree = SOURCE_ROOT; };
+		A5F9E4101A1235C20023ADB6 /* icon-40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-40.png"; path = "LHCocosFirstGame iOS/Images.xcassets/AppIcon.appiconset/icon-40.png"; sourceTree = SOURCE_ROOT; };
+		A5F9E4111A1235C20023ADB6 /* icon-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-50.png"; path = "LHCocosFirstGame iOS/Images.xcassets/AppIcon.appiconset/icon-50.png"; sourceTree = SOURCE_ROOT; };
+		A5F9E4121A1235C20023ADB6 /* icon-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-57.png"; path = "LHCocosFirstGame iOS/Images.xcassets/AppIcon.appiconset/icon-57.png"; sourceTree = SOURCE_ROOT; };
+		A5F9E4131A1235C20023ADB6 /* icon-58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-58.png"; path = "LHCocosFirstGame iOS/Images.xcassets/AppIcon.appiconset/icon-58.png"; sourceTree = SOURCE_ROOT; };
+		A5F9E4141A1235C20023ADB6 /* icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-72.png"; path = "LHCocosFirstGame iOS/Images.xcassets/AppIcon.appiconset/icon-72.png"; sourceTree = SOURCE_ROOT; };
+		A5F9E4151A1235C20023ADB6 /* icon-76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-76.png"; path = "LHCocosFirstGame iOS/Images.xcassets/AppIcon.appiconset/icon-76.png"; sourceTree = SOURCE_ROOT; };
+		A5F9E4161A1235C20023ADB6 /* icon-80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-80.png"; path = "LHCocosFirstGame iOS/Images.xcassets/AppIcon.appiconset/icon-80.png"; sourceTree = SOURCE_ROOT; };
+		A5F9E4171A1235C20023ADB6 /* icon-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-100.png"; path = "LHCocosFirstGame iOS/Images.xcassets/AppIcon.appiconset/icon-100.png"; sourceTree = SOURCE_ROOT; };
+		A5F9E4181A1235C20023ADB6 /* icon-114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-114.png"; path = "LHCocosFirstGame iOS/Images.xcassets/AppIcon.appiconset/icon-114.png"; sourceTree = SOURCE_ROOT; };
+		A5F9E4191A1235C20023ADB6 /* icon-120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-120.png"; path = "LHCocosFirstGame iOS/Images.xcassets/AppIcon.appiconset/icon-120.png"; sourceTree = SOURCE_ROOT; };
+		A5F9E41A1A1235C20023ADB6 /* icon-144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-144.png"; path = "LHCocosFirstGame iOS/Images.xcassets/AppIcon.appiconset/icon-144.png"; sourceTree = SOURCE_ROOT; };
+		A5F9E41B1A1235C20023ADB6 /* icon-152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-152.png"; path = "LHCocosFirstGame iOS/Images.xcassets/AppIcon.appiconset/icon-152.png"; sourceTree = SOURCE_ROOT; };
+		A5F9E4291A1235F90023ADB6 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "LHCocosFirstGame iOS/Images.xcassets/LaunchImage.launchimage/Default-568h@2x.png"; sourceTree = SOURCE_ROOT; };
+		A5F9E42A1A1235F90023ADB6 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = "LHCocosFirstGame iOS/Images.xcassets/LaunchImage.launchimage/Default.png"; sourceTree = SOURCE_ROOT; };
+		A5F9E42B1A1235F90023ADB6 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "LHCocosFirstGame iOS/Images.xcassets/LaunchImage.launchimage/Default@2x.png"; sourceTree = SOURCE_ROOT; };
+		A5F9E4361A1248290023ADB6 /* goreview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = goreview.png; sourceTree = "<group>"; };
 		A5FA68C31988A3BD00108DB9 /* LHShareButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LHShareButton.cpp; path = ../Classes/LHShareButton.cpp; sourceTree = "<group>"; };
 		A5FA68C41988A3BD00108DB9 /* LHShareButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LHShareButton.h; path = ../Classes/LHShareButton.h; sourceTree = "<group>"; };
 		A5FA68C81988A3C500108DB9 /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share.png; sourceTree = "<group>"; };
@@ -699,6 +733,22 @@
 		5087E77117EB970100C73F5D /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				A5F9E4291A1235F90023ADB6 /* Default-568h@2x.png */,
+				A5F9E42A1A1235F90023ADB6 /* Default.png */,
+				A5F9E42B1A1235F90023ADB6 /* Default@2x.png */,
+				A5F9E40F1A1235C20023ADB6 /* icon-29.png */,
+				A5F9E4101A1235C20023ADB6 /* icon-40.png */,
+				A5F9E4111A1235C20023ADB6 /* icon-50.png */,
+				A5F9E4121A1235C20023ADB6 /* icon-57.png */,
+				A5F9E4131A1235C20023ADB6 /* icon-58.png */,
+				A5F9E4141A1235C20023ADB6 /* icon-72.png */,
+				A5F9E4151A1235C20023ADB6 /* icon-76.png */,
+				A5F9E4161A1235C20023ADB6 /* icon-80.png */,
+				A5F9E4171A1235C20023ADB6 /* icon-100.png */,
+				A5F9E4181A1235C20023ADB6 /* icon-114.png */,
+				A5F9E4191A1235C20023ADB6 /* icon-120.png */,
+				A5F9E41A1A1235C20023ADB6 /* icon-144.png */,
+				A5F9E41B1A1235C20023ADB6 /* icon-152.png */,
 				5087E77C17EB970100C73F5D /* Info.plist */,
 			);
 			name = Icons;
@@ -708,6 +758,7 @@
 		78C7DDAA14EBA5050085D0C2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A5F9E4361A1248290023ADB6 /* goreview.png */,
 				A5F9E4051A1205060023ADB6 /* da.png */,
 				A5F9E3F71A11E2FB0023ADB6 /* wiso.wav */,
 				A5F9E3F41A11DD320023ADB6 /* fail.wav */,
@@ -1228,33 +1279,50 @@
 			files = (
 				A5F9E3E31A1097C30023ADB6 /* ban_back.png in Resources */,
 				A5F9E3E11A0FDA330023ADB6 /* ldz.png in Resources */,
+				A5F9E41C1A1235C20023ADB6 /* icon-29.png in Resources */,
 				A5F9E4061A1205060023ADB6 /* da.png in Resources */,
 				A5F9E3F11A11D7610023ADB6 /* pop.wav in Resources */,
 				A577E96D19810ABA0006052B /* ch_ls.plist in Resources */,
 				A5F9E3F01A11D7610023ADB6 /* fly.wav in Resources */,
 				A5F9E3D11A0E2DF40023ADB6 /* back.tmx in Resources */,
+				A5F9E41D1A1235C20023ADB6 /* icon-40.png in Resources */,
+				A5F9E42C1A1235F90023ADB6 /* Default-568h@2x.png in Resources */,
 				A5F9E3E81A10F3F10023ADB6 /* lb.png in Resources */,
 				A5AA4314196D299D00DC3411 /* UMShareEditViewController.xib in Resources */,
+				A5F9E4251A1235C20023ADB6 /* icon-114.png in Resources */,
 				A5F9E3E91A10F3F10023ADB6 /* replay.png in Resources */,
 				A51CE8FC19D056DD0032C075 /* Images.xcassets in Resources */,
 				A5F9E3F91A11E2FB0023ADB6 /* wiso.wav in Resources */,
+				A5F9E41F1A1235C20023ADB6 /* icon-57.png in Resources */,
 				A5F9E3D21A0E2DF40023ADB6 /* rb.png in Resources */,
 				A5F9E3E71A10F3F10023ADB6 /* back.png in Resources */,
+				A5F9E4201A1235C20023ADB6 /* icon-58.png in Resources */,
 				A5F9E3EB1A10F9570023ADB6 /* panel.png in Resources */,
 				A5AA4316196D299D00DC3411 /* UMSLoginViewController.xib in Resources */,
 				A5AA4318196D299D00DC3411 /* UMSShareListController.xib in Resources */,
 				A5F9E3F31A11DBBA0023ADB6 /* pass.wav in Resources */,
 				A5AA4312196D299D00DC3411 /* UMSCommentInputController.xib in Resources */,
+				A5F9E4241A1235C20023ADB6 /* icon-100.png in Resources */,
+				A5F9E41E1A1235C20023ADB6 /* icon-50.png in Resources */,
 				A59A47801952AD1100217F27 /* README.txt in Resources */,
+				A5F9E4211A1235C20023ADB6 /* icon-72.png in Resources */,
+				A5F9E4221A1235C20023ADB6 /* icon-76.png in Resources */,
+				A5F9E42E1A1235F90023ADB6 /* Default@2x.png in Resources */,
+				A5F9E4261A1235C20023ADB6 /* icon-120.png in Resources */,
 				A5AA430E196D299D00DC3411 /* UMSocialLocalizable.strings in Resources */,
+				A5F9E4371A1248290023ADB6 /* goreview.png in Resources */,
 				A5AA4311196D299D00DC3411 /* UMSCommentDetailController.xib in Resources */,
 				1AFAF8BE16D35E4900DB1158 /* HelloWorld.png in Resources */,
 				A5F9E3E01A0FDA330023ADB6 /* ldz.plist in Resources */,
+				A5F9E4271A1235C20023ADB6 /* icon-144.png in Resources */,
+				A5F9E4281A1235C20023ADB6 /* icon-152.png in Resources */,
+				A5F9E42D1A1235F90023ADB6 /* Default.png in Resources */,
 				A5AA431F196D299D00DC3411 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				A5AA4317196D299D00DC3411 /* UMSnsAccountViewController.xib in Resources */,
 				A5F9E3F51A11DD320023ADB6 /* fail.wav in Resources */,
 				A5F9E3D41A0E2ED10023ADB6 /* rr.png in Resources */,
 				A594BDD119470429001DEF30 /* play.png in Resources */,
+				A5F9E4231A1235C20023ADB6 /* icon-80.png in Resources */,
 				A577E96E19810ABA0006052B /* en_ls.plist in Resources */,
 				A53D15AF1A0759E600727F06 /* phsprite.png in Resources */,
 				A5AA4315196D299D00DC3411 /* UMShareEditViewControlleriPad.xib in Resources */,
@@ -1444,7 +1512,7 @@
 					"$(PROJECT_DIR)/ios",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "Flying Banana";
+				PRODUCT_NAME = "Lu Banana";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
@@ -1498,7 +1566,7 @@
 					"$(PROJECT_DIR)/ios",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "Flying Banana";
+				PRODUCT_NAME = "Lu Banana";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";

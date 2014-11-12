@@ -13,7 +13,7 @@
 #include "LHMacros.h"
 USING_NS_CC;
 
-#define ANI_TIME 0.3f
+#define ANI_TIME 0.2f
 
 #define MODE_VIEW 0
 #define MODE_POWER 1
@@ -91,18 +91,17 @@ void LDZGameLayer::initLevel(int level){
     gt->setColor(Color3B::RED);
     gt->setPosition(Vec2(_mainC->getPosition().x , _mainC->getBoundingBox().getMaxY() + gt->getContentSize().height/2));
     this->addChild(gt);
+    auto bl = Blink::create(1, 1);
+    auto rp = RepeatForever::create(bl);
+    gt->runAction(rp);
     
-    auto gt2 = ui::Text::create(LHLocalizedCString("guidetext2"), Common_Font, 35);
-    gt2->setColor(Color3B::RED);
-    gt2->setPosition(Vec2(_mainC->getPosition().x,_downLimit->getPositionY()+height/2));
-    this->addChild(gt2);
     auto da = Sprite::create("da.png");
     da->setScaleY(height/da->getContentSize().height);
-    da->setPosition(Vec2(gt2->getContentSize().width/2, gt2->getContentSize().height/2));
-    gt2->addChild(da);
+    da->setPosition(Vec2(_mainC->getPosition().x,_downLimit->getPositionY()+height/2));
+    this->addChild(da);
     
     auto lis = EventListenerTouchOneByOne::create();
-    lis->onTouchBegan = [this,gt,progress,progback,gt2](Touch* tmpTouch, Event*){
+    lis->onTouchBegan = [this,gt,progress,progback,da](Touch* tmpTouch, Event*){
         if (_mode == MODE_VIEW) {
             Vec2 loca = tmpTouch->getLocation();
             loca = this->convertToNodeSpace(loca);
@@ -118,11 +117,11 @@ void LDZGameLayer::initLevel(int level){
                 _mode = MODE_BEGAIN;
                 
                 gt->removeFromParent();
-                gt2->removeFromParent();
+                da->removeFromParent();
                 
                 progress->setVisible(true);
                 progback->setVisible(true);
-                progress->setPercentage(1);
+                progress->setPercentage(0);
             }
         }else if (_mode == MODE_POWER_END){
             _mode = MODE_POWER;
@@ -141,7 +140,7 @@ void LDZGameLayer::initLevel(int level){
             this->focusOn(Vec2(_focusCenter.x , toy),_focusLen, false);
         }else if (_mode == MODE_POWER){
             float dy = fabsf(cu.y - last.y);
-            _powerProg->setPercentage(_powerProg->getPercentage()+dy/_powerProg->getPercentage()/MOVE_FACTOR);
+            _powerProg->setPercentage(_powerProg->getPercentage()+dy/(_powerProg->getPercentage()+1)/MOVE_FACTOR);
         }else if (_mode == MODE_FLY){
             this->update(0.2f);
         }
@@ -154,7 +153,7 @@ void LDZGameLayer::initLevel(int level){
     };
     this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(lis, this);
     
-    focusOn(Vec2(_mapSize.width/2,(uy+dy)/2), vs.width, false);
+    focusOn(Vec2(_mapSize.width/2,(uy - height/2)), vs.width, false);
     auto dl2 = DelayTime::create(1);
     CallFunc *call = CallFunc::create([this](){
         auto tmpcall = CallFunc::create([this](){

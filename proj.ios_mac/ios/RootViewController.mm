@@ -121,6 +121,7 @@
                 NSLog(@"error loadProduct %@",error.localizedFailureReason);
             }
         }];
+        [self presentViewController:reviewVC animated:YES completion:nil];
     }else{
         // before iOS6.0
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=%@", appId]]];
@@ -214,7 +215,7 @@
     // Add your publisher ID here and fill in the GADAdSize constant for the ad
     // you would like to request.
     bannerView_ = [[GADBannerView alloc] initWithAdSize:kGADAdSizeSmartBannerPortrait];
-    bannerView_.adUnitID = @"a153a14e5305ecd";
+    bannerView_.adUnitID = @"ca-app-pub-9455502179330810/7951849280";
     bannerView_.delegate = self;
     [bannerView_ setRootViewController:self];
     

@@ -58,31 +58,31 @@ bool GameOverScene::initDict(cocos2d::CCDictionary *dic)
     this->addChild(panel);
     
     auto gameover = ui::Text::create(LHLocalizedCString("gameover"), Common_Font, 70);
-    gameover->setPosition(Vec2(vs.width/2, vs.height/3*2));
+    gameover->setPosition(Vec2(vs.width/2 + vo.x, vs.height/3*2 + vo.y));
     gameover->setColor(Color3B::BLACK);
     this->addChild(gameover);
     show(gameover);
     
     int best = UserDefault::getInstance()->getIntegerForKey("best", 0);
     
-    auto scorelabel = ui::Text::create(StringUtils::format("%s:%d",LHLocalizedCString("level"),score->getValue()), Common_Font, 50);
-    scorelabel->setPosition(Vec2(vs.width/2, vs.height/2+scorelabel->getContentSize().height/2));
+    auto scorelabel = ui::Text::create(StringUtils::format("%s:%d",LHLocalizedCString("level"),score->getValue()-1), Common_Font, 50);
+    scorelabel->setPosition(Vec2(vs.width/2 + vo.x, vs.height/2+scorelabel->getContentSize().height/2 + + vo.y));
     scorelabel->setColor(Color3B::BLACK);
     this->addChild(scorelabel);
     show(scorelabel);
     
     auto bestlabel = ui::Text::create(StringUtils::format("%s:%d",LHLocalizedCString("best"),best), Common_Font, 50);
-    bestlabel->setPosition(Vec2(vs.width/2, vs.height/2-bestlabel->getContentSize().height/2));
+    bestlabel->setPosition(Vec2(vs.width/2 + vo.x, vs.height/2-bestlabel->getContentSize().height/2+ vo.y));
     bestlabel->setColor(Color3B::BLACK);
     this->addChild(bestlabel);
     show(bestlabel);
     
-    float by = vs.height/6;
+    float by = vs.height/6 + vo.y;
     float fs = 40;
     
     auto replay = ui::Button::create("replay.png");
     replay->setTitleFontSize(fs);
-    replay->setPosition(Vec2(vs.width/2, vs.height/3));
+    replay->setPosition(Vec2(vs.width/2+ vo.x, vs.height/3+ vo.y));
     replay->addTouchEventListener([](Ref *ps,ui::Widget::TouchEventType type){
         if (type == ui::Widget::TouchEventType::ENDED) {
             Director::getInstance()->replaceScene(PlayScene::createScene(nullptr));
@@ -92,8 +92,7 @@ bool GameOverScene::initDict(cocos2d::CCDictionary *dic)
     show(replay);
     
     auto back = ui::Button::create("back.png");
-    back->setPosition(Vec2(vs.width/4, by));
-    back->setTitleFontSize(fs);
+    back->setPosition(Vec2(vs.width/4 + vo.x, by));
     back->addTouchEventListener([](Ref *ps,ui::Widget::TouchEventType type){
         if (type == ui::Widget::TouchEventType::ENDED) {
             Director::getInstance()->replaceScene(HelloWorld::createScene());
@@ -103,15 +102,13 @@ bool GameOverScene::initDict(cocos2d::CCDictionary *dic)
     show(back);
     
     auto share = LHShareButton::defaultButton("share.png","LuckyGame");
-    share->setTitleFontSize(fs);
-    share->setPosition(Vec2(vs.width/2, by));
+    share->setPosition(Vec2(vs.width/2 + vo.x, by));
     this->addChild(share);
     show(share);
     
     std::string lb = "lb.png";
     auto leader = LHLeaderBoard::defaultButton(lb);
-    leader->setTitleFontSize(fs);
-    leader->setPosition(Vec2(vs.width/4*3, by));
+    leader->setPosition(Vec2(vs.width/4*3 + vo.x, by));
     this->addChild(leader);
     show(leader);
     

@@ -16,8 +16,6 @@
 	<string>恭喜过关！</string>
 	<key>guidetext</key>
 	<string>触摸香蕉并滑动！</string>
-	<key>guidetext2</key>
-	<string>让香蕉的最高点在两条线之间</string>
 	<key>toomuch</key>
 	<string>撸太狠了！</string>
 	<key>noenough</key>
