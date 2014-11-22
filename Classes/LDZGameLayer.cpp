@@ -22,12 +22,12 @@ USING_NS_CC;
 #define MODE_BEGAIN 4
 #define MODE_POWER_END 5
 
-#define GAS 20.0f
+#define GASF 1.4f
 #define MOVE_FACTOR 1.0f
 #define DECRE_FACTOR 4.0f
-#define SPEED_FACTOR 5.0f
+#define SPEED_FACTOR 30.0f
 
-#define FLY_WAV 3.0f
+#define FLY_WAV 1.0f
 
 LDZGameLayer::~LDZGameLayer(){
     this->getEventDispatcher()->removeEventListenersForTarget(this);
@@ -69,15 +69,8 @@ void LDZGameLayer::initLevel(int level){
     _powerProgBack = progback;
     
     //limit
-    float height = 400/level*1.5;
-    float HIGH_THRE = 80;
-    if (height<HIGH_THRE) {
-        height = HIGH_THRE;
-    }
-    float uy = level*150+800;
-    if (uy >= _mapSize.height) {
-        uy = _mapSize.height/3*2 + _mapSize.height/3*CCRANDOM_0_1() - 5;
-    }
+    float height = 50 + arc4random()%100;
+    float uy = _mapSize.height/3 + _mapSize.height/3*2*CCRANDOM_0_1() - 5;
     float dy = uy - height;
     _upLimit = Sprite::createWithSpriteFrameName("limit.png");
     _upLimit->setPosition(_mapSize.width/2, uy);
@@ -87,7 +80,7 @@ void LDZGameLayer::initLevel(int level){
     this->addChild(_downLimit);
     
     //guide
-    auto gt = ui::Text::create(LHLocalizedCString("guidetext"), Common_Font, 35);
+    auto gt = ui::Text::create(LHLocalizedCString("guidetext"), Common_Font, 25);
     gt->setColor(Color3B::RED);
     gt->setPosition(Vec2(_mainC->getPosition().x , _mainC->getBoundingBox().getMaxY() + gt->getContentSize().height/2));
     this->addChild(gt);
@@ -141,8 +134,6 @@ void LDZGameLayer::initLevel(int level){
         }else if (_mode == MODE_POWER){
             float dy = fabsf(cu.y - last.y);
             _powerProg->setPercentage(_powerProg->getPercentage()+dy/(_powerProg->getPercentage()+1)/MOVE_FACTOR);
-        }else if (_mode == MODE_FLY){
-            this->update(0.2f);
         }
     };
     lis->onTouchEnded = [this](Touch*, Event*){
@@ -186,17 +177,12 @@ void LDZGameLayer::update(float delta){
     if (_mode == MODE_FLY || _mode == MODE_END) {
         float dy = _mainCVSpeed*delta;
         _mainC->setPosition(_mainC->getPositionX(), _mainC->getPositionY()+dy);
-        _mainCVSpeed -= (GAS + _mainCVSpeed/10)*delta;
+        _mainCVSpeed -= _mainC->getPositionY()*GASF*delta;
         
         if (_mode == MODE_FLY) {
             if (_mainC->getPositionY()<_upLimit->getPositionY()) {
                 Size vs = Director::getInstance()->getVisibleSize();
-                float focusL = _upLimit->getPositionY()+20 - _mainC->getBoundingBox().getMinY();
-                if (focusL < vs.width) {
-                    focusOn(_mainC->getPosition(), focusL, false);
-                }else{
-                    focusOn(_mainC->getPosition(), vs.width, false);
-                }
+                focusOn(_mainC->getPosition(), vs.width, false);
             }else{
                 focusOn(Vec2(_mainC->getPositionX(),_mainC->getPositionY()), _focusLen, false);
             }
@@ -214,10 +200,10 @@ void LDZGameLayer::update(float delta){
                 _mode = MODE_END;
                 this->gameEnd(_mainC->getPositionY());
             }
-            else if(_mainC->getPositionY()>(_upLimit->getPositionY()+150)){
-                _mode = MODE_END;
-                this->gameEnd(-1);
-            }
+//            else if(_mainC->getPositionY()>(_upLimit->getPositionY()+150)){
+//                _mode = MODE_END;
+//                this->gameEnd(-1);
+//            }
             
         }
     }else if(_mode == MODE_POWER){

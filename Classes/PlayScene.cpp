@@ -79,7 +79,7 @@ void PlayScene::initLevel(int level){
     int bestlevel = UserDefault::getInstance()->getIntegerForKey("best",0);
     leveltext->setString(StringUtils::format("%s:%d %s:%d",LHLocalizedCString("level"),(_curLevel),LHLocalizedCString("best"),bestlevel));
     leveltext -> setPosition(Vec2(vs.width/2 + vo.x, vs.height/2+ vo.y));
-    leveltext->setScale(2);
+    leveltext->setScale(1.8f);
     float time = 0.2f;
     DelayTime *ldl = DelayTime::create(1);
     MoveTo *mv = MoveTo::create(time, Vec2(vs.width/2 + vo.x, vs.height - leveltext->getContentSize().height/2 + vo.y));

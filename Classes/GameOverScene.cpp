@@ -65,13 +65,13 @@ bool GameOverScene::initDict(cocos2d::CCDictionary *dic)
     
     int best = UserDefault::getInstance()->getIntegerForKey("best", 0);
     
-    auto scorelabel = ui::Text::create(StringUtils::format("%s:%d",LHLocalizedCString("level"),score->getValue()-1), Common_Font, 50);
+    auto scorelabel = ui::Text::create(StringUtils::format("%s   %d",LHLocalizedCString("level"),score->getValue()-1), Common_Font, 50);
     scorelabel->setPosition(Vec2(vs.width/2 + vo.x, vs.height/2+scorelabel->getContentSize().height/2 + + vo.y));
     scorelabel->setColor(Color3B::BLACK);
     this->addChild(scorelabel);
     show(scorelabel);
     
-    auto bestlabel = ui::Text::create(StringUtils::format("%s:%d",LHLocalizedCString("best"),best), Common_Font, 50);
+    auto bestlabel = ui::Text::create(StringUtils::format("%s   %d",LHLocalizedCString("best"),best), Common_Font, 50);
     bestlabel->setPosition(Vec2(vs.width/2 + vo.x, vs.height/2-bestlabel->getContentSize().height/2+ vo.y));
     bestlabel->setColor(Color3B::BLACK);
     this->addChild(bestlabel);
